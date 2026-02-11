@@ -1,12 +1,22 @@
-help =input("do you need help: ").lower()
 
-#yes or nah
+while True:
+    name = input("whats your name:")
 
-if help == "yes" or help == "y":
-    print("help")
+    if name == "" or name == " ":
+        print ("please enter a name")
+        continue
 
-elif help == "no" or help == "n":
-    print("you dont need help")
+    help =input(f"{name} do you need help: ").lower()
 
-else:
-    input(f"{help}yes or no?") 
+    #yes or nah
+    if help == "yes" or help == "y":
+        print("help")
+        break
+    elif help == "no" or help == "n":
+        print("you dont need help")
+        break
+    else:
+        print("yes or no?") 
+        continue
+
+print("we are done")
