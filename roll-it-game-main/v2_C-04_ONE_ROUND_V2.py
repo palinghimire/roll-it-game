@@ -43,6 +43,10 @@ def make_statment(statement, decoration):
     end = decoration * 3 
     print(f"\n{end} {statement} {end}")
 #main starts here
+#initialise list to gold game history
+game_history = []
+
+
 
 # roll the dice for the user and note if they got a double
 initialise_user = initialise_points("user")
@@ -104,6 +108,13 @@ while player_1_points < 13 and player_2_points < 13:
 user_points = player_1_points
 comp_points = player_2_points
 
+game_results = (f"round  {round_played}: user Points {user_point} | "
+                    f"computer point {comp_point}, {winner} wins"
+                    f"({user_score}) | {comp_score})")
+
+
+
+
 if first == "comp":
     user_points, comp_points = comp_points, user_points
 
@@ -126,3 +137,7 @@ if WINNER == "user" and user_double == "yes":
 make_statment(statement = "end of round", decoration="=")
 print(f"Round feedback: {round_feedback}")
 print(f"Final scores - User: {user_points}, Computer: {comp_points}")
+
+print("game history")
+for item in game_history:
+    print(item)
