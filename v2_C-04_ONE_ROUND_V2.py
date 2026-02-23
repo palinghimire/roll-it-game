@@ -1,5 +1,28 @@
 import random
 
+### this is where i get the users name so i can make the message more personalised ###
+
+while True:
+    name = input("whats your name:")
+
+    if name == "" or name == " ":
+        print ("please enter a name")
+        continue
+
+    help =input(f"{name} do you need help: ").lower()
+
+    #yes or nah
+    if help == "yes" or help == "y":
+        print("help")
+        break
+    elif help == "no" or help == "n":
+        print("you dont need help")
+        break
+    else:
+        print("yes or no?") 
+        continue
+
+print("we are done")
 def initialise_points(which_player):
     """roll the dice for the user and note if they got a duble"""
     # Roll the dice for the user and note if they got a duble
@@ -20,6 +43,10 @@ def make_statment(statement, decoration):
     end = decoration * 3 
     print(f"\n{end} {statement} {end}")
 #main starts here
+#initialise list to gold game history
+game_history = []
+
+
 
 # roll the dice for the user and note if they got a double
 initialise_user = initialise_points("user")
@@ -78,26 +105,37 @@ while player_1_points < 13 and player_2_points < 13:
     print(f"{first}: {player_1_points} | {second} {player_2_points} points")
 
 #print("end of round")    
+# determine actual user and computer points based on who started
 user_points = player_1_points
 comp_points = player_2_points
 
 if first == "comp":
+    # player_1 was the computer, swap to map to user/computer variables
     user_points, comp_points = comp_points, user_points
 
-#WORK OUT WHO WON
+# WORK OUT WHO WON
 if user_points > comp_points:
     WINNER = "user"
 else:
-        WINNER = "comp"
+    WINNER = "comp"
 
-round_feedback =f"the{WINNER} won"
+round_feedback = f"the {WINNER} won"
 
-#double points if the user got a double
+# double points if the user got a double (from the initial roll)
 if WINNER == "user" and user_double == "yes":
     user_points = user_points * 2
 
+# record the round (simple round counter, single round game so 1)
+round_played = 1
+game_results = (f"round {round_played}: user Points {user_points} | "
+                f"computer Points {comp_points} -> {WINNER} wins")
+game_history.append(game_results)
 
-#output the results
-make_statment(statement = "end of round", decoration="=")
+# output the results
+make_statment(statement="end of round", decoration="=")
 print(f"Round feedback: {round_feedback}")
 print(f"Final scores - User: {user_points}, Computer: {comp_points}")
+
+print("game history")
+for item in game_history:
+    print(item)
